@@ -25,7 +25,7 @@ public class BookService implements IBookService{
 
     @Override
     public Book getById(long id) throws NotFoundException {
-        return null;
+        return this.repository.findBookById(id);
     }
 
     @Override
@@ -35,7 +35,9 @@ public class BookService implements IBookService{
 
     @Override
     public Book update(long id, BookUpdateRequestBody request) throws NotFoundException {
-        return null;
+        var updatedBook = this.getById(id);
+        updatedBook.setName(request.getName());
+        return this.repository.save(updatedBook);
     }
 
     @Override

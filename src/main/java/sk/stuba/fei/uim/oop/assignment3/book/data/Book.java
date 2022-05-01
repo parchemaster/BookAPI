@@ -21,10 +21,21 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    @NotNull
+//    @NotNull
     String name;
+    String description;
+    Long authorId;
+    Long pages;
+    Long amount;
+    Long lendCount;
+
 
     public Book(BookAddRequestBody requestBody) {
         this.name = requestBody.getName();
+        this.description = requestBody.getDescription();
+        this.authorId = requestBody.getAuthorId();
+        this.pages = requestBody.getPages();
+        this.amount = requestBody.getAmount();
+        this.lendCount = requestBody.getLendCount();
     }
 }

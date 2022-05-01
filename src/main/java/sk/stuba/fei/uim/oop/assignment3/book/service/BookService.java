@@ -42,6 +42,6 @@ public class BookService implements IBookService{
 
     @Override
     public void delete(long id) throws NotFoundException {
-
+        this.repository.delete(this.getById(id));
     }
 }

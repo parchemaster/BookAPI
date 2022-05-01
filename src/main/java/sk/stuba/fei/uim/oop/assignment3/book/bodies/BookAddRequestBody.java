@@ -7,4 +7,9 @@ import lombok.Setter;
 @Setter
 public class BookAddRequestBody {
     private String name;
+    private String description;
+    private Long authorId;
+    private Long pages;
+    private Long amount;
+    private Long lendCount;
 }

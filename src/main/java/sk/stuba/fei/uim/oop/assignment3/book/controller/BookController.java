@@ -42,4 +42,9 @@ public class BookController {
     public Book updateBook(@PathVariable("id") Long bookId, @RequestBody BookUpdateRequestBody body) throws NotFoundException {
         return service.update(bookId, body);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteProduct(@PathVariable("id") Long bookId) throws NotFoundException {
+        this.service.delete(bookId);
+    }
 }

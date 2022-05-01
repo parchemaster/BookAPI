@@ -9,6 +9,7 @@ import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookUpdateRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.book.service.BookService;
+import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.LendCount;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 
 import java.util.List;
@@ -53,5 +54,10 @@ public class BookController {
     @PostMapping(value = "/{id}/amount", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Amount addAmount(@PathVariable("id") Long bookId, @RequestBody Amount body) throws NotFoundException {
         return new Amount(this.service.addAmount(bookId, body.getAmount()));
+    }
+
+    @GetMapping(value = "/{id}/lendCount", produces = MediaType.APPLICATION_JSON_VALUE)
+    public LendCount getLendCount(@PathVariable("id") Long bookId) throws NotFoundException {
+        return new LendCount(this.service.getLendCount(bookId));
     }
 }

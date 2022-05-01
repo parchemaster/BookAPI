@@ -56,4 +56,9 @@ public class BookService implements IBookService{
         this.repository.save(book);
         return book.getAmount();
     }
+
+    @Override
+    public long getLendCount(long id) throws NotFoundException {
+        return repository.findBookById(id).getLendCount();
+    }
 }

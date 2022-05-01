@@ -22,4 +22,6 @@ public interface IBookService {
     long getAmount(long id) throws NotFoundException;
 
     long addAmount(long id, long increment) throws NotFoundException;
+
+    long getLendCount(long id) throws NotFoundException;
 }

@@ -1,10 +1,9 @@
 package sk.stuba.fei.uim.oop.assignment3.book.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
-import sk.stuba.fei.uim.oop.assignment3.book.bodies.BookAddRequestBody;
-import sk.stuba.fei.uim.oop.assignment3.book.bodies.BookUpdateRequestBody;
+import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
+import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookUpdateRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.book.data.BookRepository;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
@@ -43,5 +42,18 @@ public class BookService implements IBookService{
     @Override
     public void delete(long id) throws NotFoundException {
         this.repository.delete(this.getById(id));
+    }
+
+    @Override
+    public long getAmount(long id) throws NotFoundException {
+        return repository.findBookById(id).getAmount();
+    }
+
+    @Override
+    public long addAmount(long id, long increment) throws NotFoundException {
+        Book book = repository.findBookById(id);
+        book.setAmount(book.getAmount() + increment);
+        this.repository.save(book);
+        return book.getAmount();
     }
 }

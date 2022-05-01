@@ -1,10 +1,9 @@
 package sk.stuba.fei.uim.oop.assignment3.book.data;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sk.stuba.fei.uim.oop.assignment3.book.bodies.BookAddRequestBody;
+import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 
 
 import javax.persistence.Entity;

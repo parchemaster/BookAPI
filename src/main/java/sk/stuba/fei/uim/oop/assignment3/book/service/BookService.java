@@ -8,6 +8,7 @@ import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookUpdateRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.book.data.BookRepository;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
+import sk.stuba.fei.uim.oop.assignment3.list.service.ILendingListService;
 
 
 import java.util.List;
@@ -21,6 +22,9 @@ public class BookService implements IBookService{
 
     @Autowired
     private IAuthorService authorService;
+
+    @Autowired
+    private ILendingListService lendingListService;
 
     @Override
     public List<Book> getAll() {

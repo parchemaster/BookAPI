@@ -29,12 +29,6 @@ public class AuthorService implements IAuthorService{
     public Author create(AuthorAddRequestBody request) {
         var newAuthor = new Author(request);
         repository.save(newAuthor);
-
-//        var allBooksID = bookService.getAll().stream().map(Book::getId).collect(Collectors.toList());
-//        var matchedBooksID = bookService.getAll().stream().filter(book -> newAuthor.getId().equals(book.getAuthor().getId())).collect(Collectors.toList());
-//        for (var book : matchedBooksID) {
-//            newAuthor.getBooks().add(book);
-//        }
         return newAuthor;
     }
 

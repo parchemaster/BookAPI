@@ -13,7 +13,7 @@ public interface IBookService {
 
     Book getById(long id) throws NotFoundException;
 
-    Book create(BookAddRequestBody request);
+    Book create(BookAddRequestBody request) throws NotFoundException;
 
     Book update(long id, BookUpdateRequestBody request) throws NotFoundException;
 

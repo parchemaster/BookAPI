@@ -3,13 +3,11 @@ package sk.stuba.fei.uim.oop.assignment3.book.data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sk.stuba.fei.uim.oop.assignment3.author.data.Author;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -23,16 +21,17 @@ public class Book {
 //    @NotNull
     String name;
     String description;
-    Long authorId;
+    @ManyToOne
+    Author author;
     Long pages;
     Long amount;
     Long lendCount;
 
 
-    public Book(BookAddRequestBody requestBody) {
+    public Book(BookAddRequestBody requestBody, Author author) {
         this.name = requestBody.getName();
         this.description = requestBody.getDescription();
-        this.authorId = requestBody.getAuthorId();
+        this.author = author;
         this.pages = requestBody.getPages();
         this.amount = requestBody.getAmount();
         this.lendCount = requestBody.getLendCount();

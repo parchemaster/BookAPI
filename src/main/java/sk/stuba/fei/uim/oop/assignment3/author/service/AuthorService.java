@@ -14,6 +14,7 @@ import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthorService implements IAuthorService{
@@ -21,10 +22,20 @@ public class AuthorService implements IAuthorService{
     @Autowired
     private AuthorRepository repository;
 
+    @Autowired
+    private BookService bookService;
 
     @Override
     public Author create(AuthorAddRequestBody request) {
-        return this.repository.save(new Author(request));
+        var newAuthor = new Author(request);
+        repository.save(newAuthor);
+
+//        var allBooksID = bookService.getAll().stream().map(Book::getId).collect(Collectors.toList());
+//        var matchedBooksID = bookService.getAll().stream().filter(book -> newAuthor.getId().equals(book.getAuthor().getId())).collect(Collectors.toList());
+//        for (var book : matchedBooksID) {
+//            newAuthor.getBooks().add(book);
+//        }
+        return newAuthor;
     }
 
     @Override

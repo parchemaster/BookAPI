@@ -8,7 +8,7 @@ import lombok.Setter;
 public class BookAddRequestBody {
     private String name;
     private String description;
-    private Long authorId;
+    private Long author;
     private Long pages;
     private Long amount;
     private Long lendCount;

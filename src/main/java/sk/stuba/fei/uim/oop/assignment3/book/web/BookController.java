@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import sk.stuba.fei.uim.oop.assignment3.book.service.IBookService;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.Amount;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookResponse;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 public class BookController {
 
     @Autowired
-    private BookService service;
+    private IBookService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<BookResponse> getAllBooks() {
@@ -29,7 +30,7 @@ public class BookController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BookResponse> addBook(@RequestBody BookAddRequestBody body) {
+    public ResponseEntity<BookResponse> addBook(@RequestBody BookAddRequestBody body) throws NotFoundException {
         return new ResponseEntity<>(new BookResponse(service.create(body)), HttpStatus.CREATED);
     }
 

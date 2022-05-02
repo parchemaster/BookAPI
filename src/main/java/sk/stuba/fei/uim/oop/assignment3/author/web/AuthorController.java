@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.stuba.fei.uim.oop.assignment3.author.service.AuthorService;
+import sk.stuba.fei.uim.oop.assignment3.author.service.IAuthorService;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorResponse;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorUpdateRequestBody;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 public class AuthorController {
 
     @Autowired
-    private AuthorService service;
+    private IAuthorService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorResponse> getAllAuthors() {

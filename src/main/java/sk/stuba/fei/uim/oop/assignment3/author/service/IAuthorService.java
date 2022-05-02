@@ -12,7 +12,7 @@ import java.util.List;
 public interface IAuthorService {
     Author create(AuthorAddRequestBody request);
 
-//    Book getById(long id) throws NotFoundException;
+    Author getById(long id) throws NotFoundException;
 //
     List<Author> getAll();
 //

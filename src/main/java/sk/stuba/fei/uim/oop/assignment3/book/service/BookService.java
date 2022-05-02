@@ -36,6 +36,9 @@ public class BookService implements IBookService{
     public Book update(long id, BookUpdateRequestBody request) throws NotFoundException {
         var updatedBook = this.getById(id);
         updatedBook.setName(request.getName());
+        updatedBook.setDescription(request.getDescription());
+        updatedBook.setAuthorId(request.getAuthor());
+        updatedBook.setPages(request.getPages());
         return this.repository.save(updatedBook);
     }
 

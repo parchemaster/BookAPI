@@ -6,7 +6,7 @@ import lombok.Getter;
 public class BookUpdateRequestBody {
     String name;
     String description;
-    Long authorId;
+    Long author;
     Long pages;
     Long amount;
     Long lendCount;

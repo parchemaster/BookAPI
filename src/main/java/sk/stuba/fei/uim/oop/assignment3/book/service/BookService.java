@@ -88,7 +88,7 @@ public class BookService implements IBookService{
     }
 
     @Override
-    public long getLendCount(long id) throws NotFoundException {
+    public long getLendCount(long id) {
         return repository.findBookById(id).getLendCount();
     }
 }

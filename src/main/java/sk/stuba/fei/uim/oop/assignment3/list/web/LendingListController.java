@@ -48,4 +48,9 @@ public class LendingListController {
     public LendingListResponse addBookToList(@PathVariable("id") Long lendingListID, @RequestBody BookIdRequest body) throws NotFoundException {
         return new LendingListResponse(service.addBook(lendingListID, body));
     }
+
+    @DeleteMapping(value = "/{id}/remove")
+    public void removeBookFromList(@PathVariable("id") Long listId, @RequestBody BookIdRequest body) throws NotFoundException {
+        service.removeBookFromList(listId, body);
+    }
 }

@@ -43,8 +43,21 @@ public class LendingListService implements ILendingListService{
     @Override
     public LendingList addBook(long listId, BookIdRequest bookId) throws NotFoundException {
         var book = bookService.getById(bookId.getBookId());
-        var LendingList =  this.repository.findLendingListById(listId);
-        LendingList.getBooks().add(book);
-        return LendingList;
+        var lendingList =  this.repository.findLendingListById(listId);
+        lendingList.getBooks().add(book);
+        return lendingList;
+    }
+
+    @Override
+    public void removeBookFromList(long listId, BookIdRequest bookId) throws NotFoundException {
+        var book = bookService.getById(bookId.getBookId());
+        var lendingList =  this.repository.findLendingListById(listId);
+        lendingList.getBooks().remove(book);
+    }
+
+    @Override
+    public void rentList(long listId) {
+        var lendingList =  this.repository.findLendingListById(listId);
+        lendingList.setLended(true);
     }
 }

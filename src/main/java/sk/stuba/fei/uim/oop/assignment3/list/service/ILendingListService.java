@@ -19,4 +19,8 @@ public interface ILendingListService {
     void delete(long id) throws NotFoundException;
 
     LendingList addBook(long listId, BookIdRequest bookId) throws NotFoundException;
+
+    void removeBookFromList(long listId, BookIdRequest bookId) throws NotFoundException;
+
+    void rentList(long listId);
 }

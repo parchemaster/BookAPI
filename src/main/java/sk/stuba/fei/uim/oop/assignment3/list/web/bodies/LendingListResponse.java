@@ -10,12 +10,12 @@ import java.util.List;
 public class LendingListResponse {
 
     private final long id;
-    private final List<Book> books;
+    private final List<Book> lendingList;
     private boolean lended;
 
     public LendingListResponse(LendingList lendingList) {
         this.id = lendingList.getId();
-        this.books = lendingList.getBooks();
+        this.lendingList = lendingList.getBooks();
         this.lended = lendingList.getLended();
     }
 }

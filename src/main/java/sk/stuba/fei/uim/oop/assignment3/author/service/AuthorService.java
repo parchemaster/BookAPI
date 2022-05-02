@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import sk.stuba.fei.uim.oop.assignment3.author.data.Author;
 import sk.stuba.fei.uim.oop.assignment3.author.data.AuthorRepository;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorAddRequestBody;
+import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorUpdateRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
@@ -32,5 +33,18 @@ public class AuthorService implements IAuthorService{
     @Override
     public List<Author> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public Author update(long id, AuthorUpdateRequestBody request) throws NotFoundException {
+        var updatedAuthor = this.getById(id);
+        updatedAuthor.setName(request.getName());
+        updatedAuthor.setSurname(request.getSurname());
+        return this.repository.save(updatedAuthor);
+    }
+
+    @Override
+    public void delete(long id) throws NotFoundException {
+        this.repository.delete(this.getById(id));
     }
 }

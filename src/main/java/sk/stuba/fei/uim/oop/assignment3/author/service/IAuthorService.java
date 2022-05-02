@@ -2,6 +2,7 @@ package sk.stuba.fei.uim.oop.assignment3.author.service;
 
 import sk.stuba.fei.uim.oop.assignment3.author.data.Author;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorAddRequestBody;
+import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorUpdateRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookUpdateRequestBody;
@@ -16,7 +17,7 @@ public interface IAuthorService {
 //
     List<Author> getAll();
 //
-//    Book update(long id, BookUpdateRequestBody request) throws NotFoundException;
+    Author update(long id, AuthorUpdateRequestBody request) throws NotFoundException;
 //
-//    void delete(long id) throws NotFoundException;
+    void delete(long id) throws NotFoundException;
 }

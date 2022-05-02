@@ -10,7 +10,6 @@ import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.Amount;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookResponse;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookUpdateRequestBody;
-import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.book.service.BookService;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 
@@ -45,7 +44,7 @@ public class BookController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public void deleteProduct(@PathVariable("id") Long bookId) throws NotFoundException {
+    public void deleteBook(@PathVariable("id") Long bookId) throws NotFoundException {
         this.service.delete(bookId);
     }
 

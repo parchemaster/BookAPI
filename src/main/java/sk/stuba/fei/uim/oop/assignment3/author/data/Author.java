@@ -21,9 +21,8 @@ public class Author {
     Long id;
     String name;
     String surname;
-//    @OneToMany(orphanRemoval = true)
-    @ElementCollection
-    List<Long> books;
+    @OneToMany(orphanRemoval = true)
+    List<Book> books;
 
 
     public Author(AuthorAddRequestBody requestBody) {

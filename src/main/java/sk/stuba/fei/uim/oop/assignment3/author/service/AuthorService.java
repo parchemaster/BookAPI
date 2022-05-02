@@ -9,6 +9,7 @@ import sk.stuba.fei.uim.oop.assignment3.author.data.AuthorRepository;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorUpdateRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
+import sk.stuba.fei.uim.oop.assignment3.book.service.BookService;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 
@@ -19,6 +20,7 @@ public class AuthorService implements IAuthorService{
 
     @Autowired
     private AuthorRepository repository;
+
 
     @Override
     public Author create(AuthorAddRequestBody request) {

@@ -14,7 +14,7 @@ public interface IAuthorService {
 
 //    Book getById(long id) throws NotFoundException;
 //
-//    List<Book> getAll();
+    List<Author> getAll();
 //
 //    Book update(long id, BookUpdateRequestBody request) throws NotFoundException;
 //

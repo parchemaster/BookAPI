@@ -44,9 +44,16 @@ public class LendingListController {
         this.service.delete(id);
     }
 
-    @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{id}/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public LendingListResponse addBookToList(@PathVariable("id") Long lendingListID, @RequestBody BookIdRequest body) throws NotFoundException {
-        return new LendingListResponse(service.addBook(lendingListID, body));
+        try {
+            var a = new LendingListResponse(service.addBook(lendingListID, body));
+            return a;
+        }
+        catch (Exception e) {
+            System.out.println("there");
+        }
+        return null;
     }
 
     @DeleteMapping(value = "/{id}/remove")

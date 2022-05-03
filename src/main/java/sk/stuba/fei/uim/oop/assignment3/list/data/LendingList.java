@@ -1,5 +1,6 @@
 package sk.stuba.fei.uim.oop.assignment3.list.data;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,10 @@ public class LendingList {
     Long id;
     @OneToMany(orphanRemoval = true)
     List<Book> books;
+    @JsonManagedReference
+    public List<Book> getBooks(){
+        return books;
+    }
     Boolean lended;
 
     public LendingList() {

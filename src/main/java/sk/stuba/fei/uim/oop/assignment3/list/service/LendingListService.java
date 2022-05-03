@@ -2,7 +2,6 @@ package sk.stuba.fei.uim.oop.assignment3.list.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sk.stuba.fei.uim.oop.assignment3.author.data.AuthorRepository;
 import sk.stuba.fei.uim.oop.assignment3.book.service.BookService;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.list.data.LendingList;
@@ -42,7 +41,7 @@ public class LendingListService implements ILendingListService{
 
     @Override
     public LendingList addBook(long listId, BookIdRequest bookId) throws NotFoundException {
-        var book = bookService.getById(bookId.getBookId());
+        var book = bookService.getById(bookId.getId());
         var lendingList =  this.repository.findLendingListById(listId);
         lendingList.getBooks().add(book);
         return lendingList;
@@ -50,7 +49,7 @@ public class LendingListService implements ILendingListService{
 
     @Override
     public void removeBookFromList(long listId, BookIdRequest bookId) throws NotFoundException {
-        var book = bookService.getById(bookId.getBookId());
+        var book = bookService.getById(bookId.getId());
         var lendingList =  this.repository.findLendingListById(listId);
         lendingList.getBooks().remove(book);
     }

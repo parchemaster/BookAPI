@@ -3,6 +3,7 @@ package sk.stuba.fei.uim.oop.assignment3.list.service;
 import org.springframework.data.jpa.repository.JpaRepository;
 import sk.stuba.fei.uim.oop.assignment3.author.data.Author;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
+import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.list.data.LendingList;
 import sk.stuba.fei.uim.oop.assignment3.list.web.bodies.BookIdRequest;
@@ -18,9 +19,9 @@ public interface ILendingListService {
 
     void delete(long id) throws NotFoundException;
 
-    LendingList addBook(long listId, BookIdRequest bookId) throws NotFoundException;
+    LendingList addBookToList(long listId, BookIdRequest bookId) throws NotFoundException, IllegalOperationException;
 
     void removeBookFromList(long listId, BookIdRequest bookId) throws NotFoundException;
 
-    void rentList(long listId);
+    void rentList(long listId) throws NotFoundException;
 }

@@ -21,7 +21,7 @@ public class LendingList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    @OneToMany(orphanRemoval = true)
+    @OneToMany
     List<Book> books;
 //    @JsonManagedReference
 //    public List<Book> getBooks(){

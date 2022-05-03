@@ -11,4 +11,5 @@ public interface LendingListRepository extends JpaRepository<LendingList, Long> 
 
     LendingList findLendingListById(Long id);
 
+
 }

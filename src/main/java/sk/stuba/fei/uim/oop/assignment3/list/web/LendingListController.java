@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorResponse;
+import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.list.service.ILendingListService;
 import sk.stuba.fei.uim.oop.assignment3.list.web.bodies.BookIdRequest;
@@ -45,13 +46,18 @@ public class LendingListController {
     }
 
     @PostMapping(value = "/{id}/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<LendingListResponse> addBookToList(@PathVariable("id") Long lendingListID, @RequestBody BookIdRequest body) throws NotFoundException {
-        var res = new LendingListResponse(service.addBook(lendingListID, body));
+    public ResponseEntity<LendingListResponse> addBookToList(@PathVariable("id") Long lendingListID, @RequestBody BookIdRequest body) throws NotFoundException, IllegalOperationException {
+        var res = new LendingListResponse(service.addBookToList(lendingListID, body));
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}/remove")
     public void removeBookFromList(@PathVariable("id") Long listId, @RequestBody BookIdRequest body) throws NotFoundException {
         service.removeBookFromList(listId, body);
+    }
+
+    @GetMapping(value = "/{id}/lend")
+    public void rentList(@PathVariable("id") Long listId) throws NotFoundException {
+        service.rentList(listId);
     }
 }

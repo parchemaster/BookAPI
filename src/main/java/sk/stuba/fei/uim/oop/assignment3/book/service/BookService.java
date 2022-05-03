@@ -1,5 +1,6 @@
 package sk.stuba.fei.uim.oop.assignment3.book.service;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.stuba.fei.uim.oop.assignment3.author.service.IAuthorService;
@@ -17,14 +18,12 @@ import java.util.stream.Collectors;
 @Service
 public class BookService implements IBookService{
 
+//    @Getter
     @Autowired
     private BookRepository repository;
 
     @Autowired
     private IAuthorService authorService;
-
-    @Autowired
-    private ILendingListService lendingListService;
 
     @Override
     public List<Book> getAll() {
@@ -33,7 +32,8 @@ public class BookService implements IBookService{
 
     @Override
     public Book getById(long id) throws NotFoundException {
-        return this.repository.findBookById(id);
+        var res = this.repository.findBookById(id);
+        return res;
     }
 
     //TODO maybe I should replace @SneakyThrows to exception
@@ -95,4 +95,11 @@ public class BookService implements IBookService{
     public long getLendCount(long id) {
         return repository.findBookById(id).getLendCount();
     }
+
+//    public long increaseLendCount(long id) throws NotFoundException {
+//        var book = this.getById(id);
+//        book.setLendCount(getLendCount(id) + 1);
+////        repository.save(book);
+//        return book.getLendCount();
+//    }
 }

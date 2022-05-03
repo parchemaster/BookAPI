@@ -25,20 +25,20 @@ public class Book {
     String description;
     @ManyToOne
     Author author;
-    @JsonBackReference
-    public Author getAuthor() {
-        return author;
-    }
+//    @JsonBackReference
+//    public Author getAuthor() {
+//        return author;
+//    }
     Long pages;
     Long amount;
     Long lendCount;
 //    @JsonBackReference
-    @ManyToOne
-    LendingList lendingList;
-    @JsonBackReference
-    public LendingList getLendingList() {
-        return lendingList;
-    }
+//    @ManyToOne
+//    LendingList lendingList;
+//    @JsonBackReference
+//    public LendingList getLendingList() {
+//        return lendingList;
+//    }
 
 
 

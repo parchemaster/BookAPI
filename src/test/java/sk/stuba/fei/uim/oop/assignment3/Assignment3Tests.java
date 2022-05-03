@@ -773,6 +773,7 @@ class Assignment3Tests {
                 .andExpect(statusMatcher)
                 .andReturn();
         if (mvcResult.getResponse().getStatus() == HttpStatus.OK.value()) {
+//            System.out.println(mvcResult.);
             return stringToObject(mvcResult, TestListResponse.class);
         }
         return null;
@@ -787,7 +788,8 @@ class Assignment3Tests {
     }
 
     static <K> K stringToObject(MvcResult object, Class<K> objectClass) throws UnsupportedEncodingException, JsonProcessingException {
-        return new ObjectMapper().readValue(object.getResponse().getContentAsString(), objectClass);
+        var a = new ObjectMapper().readValue(object.getResponse().getContentAsString(), objectClass);
+        return a;
     }
 
     @Getter

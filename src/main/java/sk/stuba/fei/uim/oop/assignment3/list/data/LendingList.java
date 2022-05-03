@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
+import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookResponse;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,10 +23,10 @@ public class LendingList {
     Long id;
     @OneToMany(orphanRemoval = true)
     List<Book> books;
-    @JsonManagedReference
-    public List<Book> getBooks(){
-        return books;
-    }
+//    @JsonManagedReference
+//    public List<Book> getBooks(){
+//        return books;
+//    }
     Boolean lended;
 
     public LendingList() {

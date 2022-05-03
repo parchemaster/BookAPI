@@ -21,5 +21,6 @@ public class AuthorResponse {
         this.surname = author.getSurname();
         this.books = author.getBooks().stream().map(Book::getId).collect(Collectors.toList());
 //        this.books = author.getBooks().stream().map(AuthorEntry::new).collect(Collectors.toList());
+//        this.books = author.getBooks();
     }
 }

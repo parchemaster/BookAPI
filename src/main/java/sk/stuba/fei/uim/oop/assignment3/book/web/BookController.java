@@ -31,7 +31,8 @@ public class BookController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookResponse> addBook(@RequestBody BookAddRequestBody body) throws NotFoundException {
-        return new ResponseEntity<>(new BookResponse(service.create(body)), HttpStatus.CREATED);
+        var res = new BookResponse(service.create(body));
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

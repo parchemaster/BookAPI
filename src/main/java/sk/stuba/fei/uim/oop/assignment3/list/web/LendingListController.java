@@ -57,7 +57,7 @@ public class LendingListController {
     }
 
     @GetMapping(value = "/{id}/lend")
-    public void rentList(@PathVariable("id") Long listId) throws NotFoundException {
+    public void rentList(@PathVariable("id") Long listId) throws NotFoundException, IllegalOperationException {
         service.rentList(listId);
     }
 }

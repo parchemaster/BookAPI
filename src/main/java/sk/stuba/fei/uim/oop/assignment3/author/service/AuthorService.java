@@ -45,8 +45,8 @@ public class AuthorService implements IAuthorService{
     @Override
     public Author update(long id, AuthorUpdateRequestBody request) throws NotFoundException {
         var updatedAuthor = this.getById(id);
-        updatedAuthor.setName(request.getName());
-        updatedAuthor.setSurname(request.getSurname());
+        updatedAuthor.setName(request.getName() != null ? request.getName() : updatedAuthor.getName());
+        updatedAuthor.setSurname(request.getSurname() != null ? request.getSurname() : updatedAuthor.getSurname());
         return this.repository.save(updatedAuthor);
     }
 

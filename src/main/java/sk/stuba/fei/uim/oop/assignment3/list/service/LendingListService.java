@@ -50,17 +50,11 @@ public class LendingListService implements ILendingListService{
     }
 
     public LendingList addBookToList(long listId, BookIdRequest bookId) throws NotFoundException, IllegalOperationException {
-//        var list = this.getById(listId);
-//        if (list.getLended()) {
-//            throw new IllegalOperationException();
-//        }
-//        for (var book : list.getBooks()) {
-//            if (book.getId().equals(bookId.getId())) {
-//                return null;
-//            }
-//        }
-        var book = bookService.getById(bookId.getId());
         var lendingList =  getById(listId);
+        var book = bookService.getById(bookId.getId());
+        if (lendingList.getLended() || lendingList.getBooks().contains(book)) {
+            throw new IllegalOperationException();
+        }
 
 //        lendingList.getBooks().add(book);
 //        lendingList.getBooks().add(bookService.getRepository().save(book));
@@ -79,12 +73,13 @@ public class LendingListService implements ILendingListService{
     }
 
     @Override
-    public void rentList(long listId) throws NotFoundException {
+    public void rentList(long listId) throws NotFoundException, IllegalOperationException {
         var lendingList =  this.repository.findLendingListById(listId);
+        if (lendingList.getLended()) {
+            throw new IllegalOperationException();
+        }
         for (var book : lendingList.getBooks()) {
             book.setLendCount(book.getLendCount() + 1);
-//            bookService.getRepository().save(book);
-//            book.setLendCount(bookService.increaseLendCount(book.getId()));
         }
         lendingList.setLended(true);
     }

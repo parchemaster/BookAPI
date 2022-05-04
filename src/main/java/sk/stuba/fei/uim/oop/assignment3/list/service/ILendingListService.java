@@ -23,5 +23,5 @@ public interface ILendingListService {
 
     void removeBookFromList(long listId, BookIdRequest bookId) throws NotFoundException;
 
-    void rentList(long listId) throws NotFoundException;
+    void rentList(long listId) throws NotFoundException, IllegalOperationException;
 }

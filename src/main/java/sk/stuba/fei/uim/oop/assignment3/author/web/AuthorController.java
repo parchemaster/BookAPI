@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sk.stuba.fei.uim.oop.assignment3.author.service.AuthorService;
 import sk.stuba.fei.uim.oop.assignment3.author.service.IAuthorService;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorResponse;

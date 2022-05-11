@@ -1,29 +1,20 @@
 package sk.stuba.fei.uim.oop.assignment3.author.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import sk.stuba.fei.uim.oop.assignment3.author.data.Author;
 import sk.stuba.fei.uim.oop.assignment3.author.data.AuthorRepository;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorUpdateRequestBody;
-import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
-import sk.stuba.fei.uim.oop.assignment3.book.service.BookService;
-import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AuthorService implements IAuthorService{
 
     @Autowired
     private AuthorRepository repository;
-
-    @Autowired
-    private BookService bookService;
 
     @Override
     public Author create(AuthorAddRequestBody request) {
@@ -33,7 +24,7 @@ public class AuthorService implements IAuthorService{
     }
 
     @Override
-    public Author getById(long id) throws NotFoundException {
+    public Author getById(long id) {
         return repository.findAuthorById(id);
     }
 
@@ -43,7 +34,7 @@ public class AuthorService implements IAuthorService{
     }
 
     @Override
-    public Author update(long id, AuthorUpdateRequestBody request) throws NotFoundException {
+    public Author update(long id, AuthorUpdateRequestBody request) {
         var updatedAuthor = this.getById(id);
         updatedAuthor.setName(request.getName() != null ? request.getName() : updatedAuthor.getName());
         updatedAuthor.setSurname(request.getSurname() != null ? request.getSurname() : updatedAuthor.getSurname());

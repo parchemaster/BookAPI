@@ -5,8 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorAddRequestBody;
-import sk.stuba.fei.uim.oop.assignment3.author.web.bodies.AuthorResponse;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.list.service.ILendingListService;
@@ -24,7 +22,6 @@ public class LendingListController {
     @Autowired
     private ILendingListService service;
 
-//    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping()
     public ResponseEntity<LendingListResponse> createList() {
         return new ResponseEntity<>(new LendingListResponse(service.create()), HttpStatus.CREATED);

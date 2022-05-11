@@ -2,11 +2,7 @@ package sk.stuba.fei.uim.oop.assignment3.list.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.book.service.BookService;
-import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
-import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookResponse;
-import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookUpdateRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.list.data.LendingList;
@@ -14,7 +10,7 @@ import sk.stuba.fei.uim.oop.assignment3.list.data.LendingListRepository;
 import sk.stuba.fei.uim.oop.assignment3.list.web.bodies.BookIdRequest;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 public class LendingListService implements ILendingListService{
@@ -36,29 +32,23 @@ public class LendingListService implements ILendingListService{
     }
 
     @Override
-    public LendingList getById(long id) throws NotFoundException {
+    public LendingList getById(long id) {
         return repository.findLendingListById(id);
     }
 
     @Override
     public void delete(long id) throws NotFoundException {
-        var list = getById(id);
-        for (var book : list.getBooks()) {
-            book.setLendCount(book.getLendCount() - 1);
-        }
+        getById(id).getBooks().forEach(book -> book.setLendCount(book.getLendCount() - 1));
         this.repository.delete(this.getById(id));
     }
 
+    @Override
     public LendingList addBookToList(long listId, BookIdRequest bookId) throws NotFoundException, IllegalOperationException {
         var lendingList =  getById(listId);
         var book = bookService.getById(bookId.getId());
         if (lendingList.getLended() || lendingList.getBooks().contains(book)) {
             throw new IllegalOperationException();
         }
-
-//        lendingList.getBooks().add(book);
-//        lendingList.getBooks().add(bookService.getRepository().save(book));
-//        lendingList.setBooks(lendingList.getBooks());
         lendingList.getBooks().add(book);
         var res = repository.save(lendingList);
         getById(listId).setBooks(lendingList.getBooks());
@@ -73,14 +63,12 @@ public class LendingListService implements ILendingListService{
     }
 
     @Override
-    public void rentList(long listId) throws NotFoundException, IllegalOperationException {
+    public void rentList(long listId) throws IllegalOperationException {
         var lendingList =  this.repository.findLendingListById(listId);
         if (lendingList.getLended()) {
             throw new IllegalOperationException();
         }
-        for (var book : lendingList.getBooks()) {
-            book.setLendCount(book.getLendCount() + 1);
-        }
+        lendingList.getBooks().forEach(book -> book.setLendCount(book.getLendCount() + 1));
         lendingList.setLended(true);
     }
 }

@@ -3,7 +3,6 @@ package sk.stuba.fei.uim.oop.assignment3.list.web.bodies;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import sk.stuba.fei.uim.oop.assignment3.book.data.Book;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookResponse;
 import sk.stuba.fei.uim.oop.assignment3.list.data.LendingList;
 
@@ -21,7 +20,6 @@ public class LendingListResponse {
 
     public LendingListResponse(LendingList lendingList) {
         this.id = lendingList.getId();
-//        this.lendingList = lendingList.getBooks().stream().map(Book::getId).collect(Collectors.toList());
         this.lendingList = lendingList.getBooks().stream().map(BookResponse::new).collect(Collectors.toList());
         this.lended = lendingList.getLended();
     }

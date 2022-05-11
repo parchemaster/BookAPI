@@ -5,13 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import sk.stuba.fei.uim.oop.assignment3.book.service.IBookService;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.Amount;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookAddRequestBody;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookResponse;
 import sk.stuba.fei.uim.oop.assignment3.book.web.bodies.BookUpdateRequestBody;
-import sk.stuba.fei.uim.oop.assignment3.book.service.BookService;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 
 import java.util.List;
